@@ -1,0 +1,12 @@
+##How to use
+readseq.py: raw text -> lines of solves
+replaceRR.py: fix R2' to R2
+trigram.py: make trigram from lines
+
+
+
+RR -> R2
+U'2 or U2' -> U2
+//Todo; split by rotation
+
+used //2018.01.23 ~ 2018.04.10
