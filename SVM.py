@@ -36,15 +36,14 @@ def main():
     clf.fit(x_train, y_train)
     pred_train = clf.predict(x_train)
     accuracy_train = accuracy_score(y_train, pred_train)
-    print('トレーニングデータに対する正解率： %.2f' % accuracy_train)
+    print('Train accuracy： %.2f' % accuracy_train)
     pred_test = clf.predict(x_test)
     accuracy_test = accuracy_score(y_test, pred_test)
-    print('テストデータに対する正解率： %.2f' % accuracy_test)
+    print('Test accuracy' % accuracy_test)
     print(pred_test)
 
     test_me = [[18,2,18,12,3,0,0,0,0,53]]
-    test_r = [[17,0,8,0,1,4,10,0,0,40]]
-    l = "CFOP" if clf.predict(test_r) == 1 else "Roux"
+    l = "CFOP" if clf.predict(test_me) == 1 else "Roux"
     print("あなたの解法は " + l)
 
 if __name__ == '__main__':

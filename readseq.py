@@ -1,3 +1,4 @@
+from argparse import ArgumentParser
 import re
 def open_seq(path):
     """
@@ -44,7 +45,7 @@ class Reconstruction():
         sequence = []
         pattern = "\((.)*\)(\s)*."
         for l in solve:
-            execution = l.split("//")[0]
+            execution = l.split("/")[0]
             d = re.search(pattern, execution)
             if d:
                 d1 = d.group(0)
@@ -67,12 +68,15 @@ class Reconstruction():
         return ((exec + " " ) * int(repeat))[:-1]
 
 def main():
-    path = "roux.rep"
-    out = path[:-3]+"out"
-    seq = open_seq(path)
+    parser = ArgumentParser()
+    parser.add_argument('--path', default="data/CFOP.txt", type=str, nargs="+", help='input file(JSON)')
+    parser.add_argument('--out', default="data/CFOP.txt", type=str, nargs="+", help='output file')
+    args = parser.parse_args()
+
+    seq = open_seq(args.path)
     r = Reconstruction(seq)
     s = r.divide_solves()
-    with open(out, "w") as f:
+    with open(args.out, "w") as f:
         f.write("".join(s).replace("  ", " ")) # processing double space produced by processing_repeat
 
 if __name__ == "__main__":

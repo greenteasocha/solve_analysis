@@ -1,4 +1,5 @@
 from collections import defaultdict
+from argparse import ArgumentParser
 
 def bigram(lines):
     dic = defaultdict(int)
@@ -35,24 +36,26 @@ def four_gram(lines):
     return dic
 
 def main():
-    path = "seq1.out"
-    threshold = 20
-    n = 2
+    parser = ArgumentParser()
+    parser.add_argument('--path', default="data/CFOP.lin", type=str, help='input file')
+    parser.add_argument('--threshold', default=20, type=int, help='lower frequency')
+    parser.add_argument('--n', default="4", type=int, help='n gram')
+    args = parser.parse_args()
 
-    with open(path, "r") as f:
+    with open(args.path, "r") as f:
         lines = f.readlines()
 
-    if n == 2:
+    if args.n == 2:
         dic = bigram(lines)
-    elif n == 3:
+    elif args.n == 3:
         dic = trigram(lines)
-    elif n == 4:
+    elif args.n == 4:
         dic = four_gram(lines)
     else:
         raise Exception
 
     for k, v in sorted(dic.items(), key=lambda x: -x[1]):
-        if v >= threshold:
+        if v >= args.threshold:
             print(str(k) + ": " + str(v))
 
 if __name__ == "__main__":

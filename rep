@@ -1,8 +1,0 @@
-x y' // inspection
-U' r2' F D' R U R // cross
-y' R U' R' U R' U' R // 1st pair
-U R U' R2 F R y' R' // 2nd pair
-U F' U' F U R U' R' // 3rd pair / EO
-U y' R U R' U2 R U' R' U' R R' U R U' R' // 4th pair
-U' R U R' U R U2 R' // OLL
-R' U L' U2 R U' R' U2 L R U' // PLL

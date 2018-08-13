@@ -1,3 +1,4 @@
+from argparse import ArgumentParser
 from collections import defaultdict
 import re
 
@@ -19,11 +20,11 @@ def BPE(lines):
                 max_k = max_k.replace(k, conv[k])
         conv[str(i)] = max_k
     print(conv)
-    for k, v in sorted(conv.items(), key=lambda x: -len(x[1])):
+    #for k, v in sorted(conv.items(), key=lambda x: int(x[0])):   #sorted by freuqency
+    for k, v in sorted(conv.items(), key=lambda x: -len(x[1])):   #sorted by length
         print(str(k) + ": " + str(v))
-    with open("seq1.bpe", "w") as f:
-        f.write("".join(lines))
 
+    return lines
 def bigram(lines):
     dic = defaultdict(int)
     for l in lines:
@@ -36,12 +37,17 @@ def bigram(lines):
     return dic
 
 def main():
-    path = "roux.out"
+    parser = ArgumentParser()
+    parser.add_argument('--path', default="data/CFOP.lin", type=str, help='input file')
+    parser.add_argument('--out', default="data/CFOP.bpe", type=str, help='output file')
+    args = parser.parse_args()
 
-    with open(path, "r") as f:
+    with open(args.path, "r") as f:
         lines = f.readlines()
 
-    BPE(lines)
+    lines = BPE(lines)
 
+    with open(args.out, "w") as f:
+        f.write("".join(lines))
 if __name__ == "__main__":
     main()

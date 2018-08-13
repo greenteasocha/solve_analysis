@@ -16,9 +16,9 @@ def extract_feature(line, method):
 
 def main():
     parser = ArgumentParser()
-    parser.add_argument('--file', default="roux.out", type=str, help='input file')
-    parser.add_argument('--out', default="roux.json", type=str, help='output file')
-    parser.add_argument('--method', default="Roux", type=str, choices=["CFOP", "Roux"])
+    parser.add_argument('--file', default="data/CFOP.lin", type=str, help='input file')
+    parser.add_argument('--out', default="data/CFOP.json", type=str, help='output file')
+    parser.add_argument('--method', default="CFOP", type=str, choices=["CFOP", "Roux"])
     args = parser.parse_args()
 
     with open(args.file, "r") as f:
